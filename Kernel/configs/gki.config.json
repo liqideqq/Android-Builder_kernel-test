@@ -10,8 +10,8 @@
     "toolchains": [
       {
         "name": "clang",
-        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master-kernel-build-2022/clang-r450784e.tar.gz",
-        "binaryEnv": ["./bin"]
+        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r522817.tar.gz",
+        "binaryEnv": ["bin"]
       }
     ],
     "enableCcache": true,
@@ -21,7 +21,8 @@
       "externalCommands": {
         "CROSS_COMPILE": "proton-clang/bin/aarch64-linux-gnu-",
         "CROSS_COMPILE_ARM32": "proton-clang/bin/arm-linux-gnueabi-",
-        "CLANG_TRIPLE": "aarch64-linux-gnu-"
+        "CLANG_TRIPLE": "aarch64-linux-gnu-",
+        "LTO": "thin"
       }
     },
     "AnyKernel3": {
