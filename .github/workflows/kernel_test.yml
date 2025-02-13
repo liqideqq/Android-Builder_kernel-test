@@ -243,8 +243,9 @@ jobs:
 
           # Apply new KernelSU patches
           curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/refs/heads/next/kernel/setup.sh" | bash -s next
-          pwd
-          # find ./KernelSU-Next/ | grep -v kernel | xargs rm -rf
+          cd KernelSU-Next/
+          find | grep -v kernel | xargs rm -r
+          cd ..
 
           echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
@@ -295,7 +296,7 @@ jobs:
             echo "🎖️ Apply xt_qtaguid.patch"
           fi
 
-      - name: 🧹 Make working directory clean to avoid dirty
+      - name: 🧹 Commit to avoid dirty
         working-directory: ${{ env.KERNEL_NAME }}
         run: |
           rm android/abi_gki_protected_exports_* || echo "No protected exports!"
