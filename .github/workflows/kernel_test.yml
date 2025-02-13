@@ -243,7 +243,7 @@ jobs:
 
           # Apply new KernelSU patches
           curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/refs/heads/next/kernel/setup.sh" | bash -s next
-          find ./KernelSU-Next/ | grep -v kernel | xargs rm
+          find ./KernelSU-Next/ | grep -v kernel | xargs rm -r
 
           echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
