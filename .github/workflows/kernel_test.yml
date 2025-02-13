@@ -234,8 +234,8 @@ jobs:
         if: ${{ env.ENABLE_KERNELSU == 'true' }}
         run: |
           # Delete old KernelSU
-          if [ -d "./KernelSU" ]; then
-            rm -rf "./KernelSU"
+          if [ -d "./KernelSU-Next" ]; then
+            rm -rf "./KernelSU-Next"
           fi
           if [ -d "./drivers/kernelsu" ]; then
             rm -rf "./drivers/kernelsu"
@@ -243,7 +243,11 @@ jobs:
 
           # Apply new KernelSU patches
           curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/refs/heads/next/kernel/setup.sh" | bash -s next
-          find ./KernelSU-Next/ | grep -v kernel | xargs rm -r
+          pwd
+          ls ./
+          cd  ..
+          ls ./
+          # find ./KernelSU-Next/ | grep -v kernel | xargs rm -r
 
           echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
