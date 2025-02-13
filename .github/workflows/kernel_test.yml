@@ -6,7 +6,7 @@ on:
       - ".github/workflows/kernel.yml"
   workflow_dispatch:
   schedule:
-    - cron: "14 13 * * 5"
+    - cron: "30 21 * * 5"
 
 jobs:
   Read-configuration:
