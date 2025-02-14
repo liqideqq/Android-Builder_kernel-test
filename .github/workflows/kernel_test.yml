@@ -3,7 +3,7 @@ name: Build kernels test
 on:
   push:
     paths:
-      - ".github/workflows/kernel.yml"
+      - ".github/workflows/kernel_test.yml"
   workflow_dispatch:
   schedule:
     - cron: "30 21 * * 5"
@@ -243,9 +243,6 @@ jobs:
 
           # Apply new KernelSU patches
           curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/refs/heads/next/kernel/setup.sh" | bash -s next
-          cd KernelSU-Next/
-          # find | grep -v kernel | xargs rm -r
-          cd ..
 
           echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
