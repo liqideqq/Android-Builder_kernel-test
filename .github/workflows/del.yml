@@ -42,11 +42,11 @@ on:
   schedule:
     - cron: '00 22 * * 0'
 
+permissions: write-all
+
 jobs:
   del_runs:
     runs-on: ubuntu-22.04
-    permissions:
-      actions: write-all
     steps:
       - name: Delete old Workflows
         uses: Mattraks/delete-workflow-runs@v2
