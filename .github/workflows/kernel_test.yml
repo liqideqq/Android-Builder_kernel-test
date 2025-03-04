@@ -241,8 +241,14 @@ jobs:
             rm -rf "./drivers/kernelsu"
           fi
 
+          cd ./KernelSU
+          cp ./patch/* ./
+          patch --fuzz=3 -p1 < MKSU-SKN_susfs.patch || true
+          cd ..
+          patch -p1 < 50_add_susfs_in_gki-android13-5.15.patch || true
+
           # Apply new KernelSU patches
-          curl -LSs "https://raw.githubusercontent.com/liqideqq/KernelSU/susfs/kernel/setup.sh" | bash -s susfs
+          curl -LSs "https://raw.githubusercontent.com/ShirkNeko/KernelSU/susfs/kernel/setup.sh" | bash -s susfs
 
           echo -e "CONFIG_KSU=y"  >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_KSU_WITH_KPROBES=n" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
