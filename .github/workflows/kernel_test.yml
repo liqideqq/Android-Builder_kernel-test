@@ -153,7 +153,7 @@ jobs:
               mkdir -p $toolchain_name
 
               # Download archive
-              wget "$toolchain_url"
+              wget "$toolchain_url" -q --show-progress
 
               # Get filename
               filename="${toolchain_url##*/}"
