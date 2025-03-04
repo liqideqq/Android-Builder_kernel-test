@@ -250,8 +250,6 @@ jobs:
           patch --fuzz=3 -p1 < nongki_fix.patch || true
           chmod 777 nongki_fix.sh
           ./nongki_fix.sh
-          cd ..
-          patch -p1 < 50_add_susfs_in_gki-android13-5.15.patch || true
 
           echo -e "CONFIG_KPROBES=y" >> arch/${{ env.arch }}/configs/${{ env.DEFCONFIG_NAME }}
           echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.arch }}/configs/${{ env.DEFCONFIG_NAME }}
