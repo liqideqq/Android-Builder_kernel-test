@@ -297,6 +297,12 @@ jobs:
           echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           
           cat arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+
+          cd ${{ env.KERNEL_NAME }}
+          # Run sed commands for modifications
+          sed -i 's/check_defconfig//' ./common/build.config.gki
+          sed -i 's/-dirty//' ./common/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "\$res-liqideqq"|' ./common/scripts/setlocalversion
           
       - name: 😋 Setup LXC docker
         working-directory: ${{ env.KERNEL_NAME }}
