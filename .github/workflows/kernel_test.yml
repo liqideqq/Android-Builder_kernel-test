@@ -354,13 +354,15 @@ jobs:
             echo "🎖️ Apply xt_qtaguid.patch"
           fi
 
-      - name: 🧹 Commit to avoid dirty
+      - name: 🧹 Config Kernel Name
         working-directory: ${{ env.KERNEL_NAME }}
         run: |
-          rm android/abi_gki_protected_exports_* || echo "No protected exports!"
-          git config --global user.email "bot@kernelsu.org"
-          git config --global user.name "KernelSUBot"
-          git add -A && git commit -a -m "Add KernelSU"
+          sed -i '$s|echo "\$res"|echo "\$res-ksusfs+"|' ./scripts/setlocalversion
+          # Run perl command to modify UTS_VERSION
+          perl -pi -e 's{UTS_VERSION="\$\(echo \$UTS_VERSION \$CONFIG_FLAGS \$TIMESTAMP \| cut -b -\$UTS_LEN\)"}{UTS_VERSION="#1 SMP PREEMPT Sat Apr 20 04:20:00 UTC 2024"}' ./scripts/mkcompile_h
+          sed -i 's/-dirty//' ./${{ env.KERNEL_NAME }}/scripts/setlocalversion
+          rm -rf ./android/abi_gki_protected_exports_*
+          sed -E -i '/^CONFIG_LOCALVERSION=/ s/(.*)"$/\1-ksusfs+"/' ./arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }} 
 
       - name: 👍 Start building the kernel
         working-directory: ${{ env.KERNEL_NAME }}
