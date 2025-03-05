@@ -356,6 +356,8 @@ jobs:
 
       - name: 🧹 Config Kernel Name
         working-directory: ${{ env.KERNEL_NAME }}
+        env: 
+          ARCH: ${{ steps.generate-args.outputs.ARCH }}
         run: |
           sed -i '$s|echo "\$res"|echo "\$res-ksusfs+"|' ./scripts/setlocalversion
           # Run perl command to modify UTS_VERSION
