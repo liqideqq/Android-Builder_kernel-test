@@ -5,7 +5,7 @@
       "repo": "https://github.com/LineageOS/android_kernel_lge_sdm845",
       "branch": "lineage-22.2",
       "device": "judypn",
-      "defconfig": "lineageos_judypn_defconfig"
+      "defconfig": "judypn_lao_com-perf_defconfig"
     },
     "toolchains": [
       {
