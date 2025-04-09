@@ -4,7 +4,7 @@
       "name": "android_gki_kernel_5.15_common",
       "repo": "https://github.com/hfdem/android_gki_kernel_5.15_common",
       "branch": "android13-5.15-2025-03",
-      "device": "gki",
+      "device": "5.15-gki",
       "defconfig": "gki_defconfig"
     },
     "toolchains": [
@@ -19,6 +19,7 @@
       "ARCH": "arm64",
       "CC": "clang/bin/clang",
       "externalCommands": {
+        "CLANG_TRIPLE" : "aarch64-linux-gnu-",
         "CROSS_COMPILE": "aarch64-linux-gnu-",
         "CROSS_COMPILE_ARM32": "arm-linux-gnueabi-",
         "AS": "clang/bin/llvm-as", 
