@@ -34,6 +34,7 @@
     },
     "AnyKernel3": {
       "use": true,
+      "branch": gki,
       "release": true
     },
     "enableKernelSU": true,
