@@ -271,8 +271,8 @@ jobs:
 
           # Applying SUSFS patches
           cd ./KernelSU-Next
-          cp ../../kernel_patches/next/kernel-implement-susfs-v1.5.7-gki.patch ./
-          patch -p1 --forward --fuzz=3 < kernel-implement-susfs-v1.5.7-gki.patch || true
+          cp ../../kernel_patches/next/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./
+          patch -p1 --forward --fuzz=3 < kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch || true
           # Apply common SUSFS patch
           cd ..
           if [ "${{ matrix.CONFIG.KernelSUSFS.branches }}" == "kernel-4.9" ]; then
