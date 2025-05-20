@@ -39,8 +39,12 @@ on:
       dry_run:
         description: "Only log actions, do not perform any delete operations."
         required: false
-  schedule:
-    - cron: '00 21 * * 5'
+  #schedule:
+    #- cron: '00 21 * * 5'
+  workflow_run:
+    workflows: ["Build kernels test"]
+    types:
+      - completed
 
 permissions: write-all
 
