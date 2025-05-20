@@ -40,7 +40,7 @@ on:
         description: "Only log actions, do not perform any delete operations."
         required: false
   schedule:
-    - cron: '00 22 * * 0'
+    - cron: '00 21 * * 5'
 
 permissions: write-all
 
