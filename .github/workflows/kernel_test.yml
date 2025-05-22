@@ -275,8 +275,9 @@ jobs:
 
           # Applying SUSFS patches
           cd ./KernelSU-Next
-          cp ../../kernel_patches/next/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./
-          patch -p1 --forward --fuzz=3 < kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch || true
+          #cp ../../kernel_patches/next/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./
+          #patch -p1 --forward --fuzz=3 < kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch || true
+          curl -Ls "https://raw.githubusercontent.com/KOWX712/files/main/0001-ksun-susfs157.patch" | patch -p1 --fuzz=3
           # Apply common SUSFS patch
           cd ..
           if [ "${{ matrix.CONFIG.KernelSUSFS.branches }}" == "kernel-4.9" ]; then
@@ -293,7 +294,7 @@ jobs:
 
           # Add SUSFS configuration settings
           echo "CONFIG_KSU=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
-          echo "CONFIG_KSU_WITH_KPROBES=n" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          echo "CONFIG_KSU_KPROBES_HOOK=n" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo "CONFIG_KSU_SUSFS=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo "CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo "CONFIG_KSU_SUSFS_SUS_PATH=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
